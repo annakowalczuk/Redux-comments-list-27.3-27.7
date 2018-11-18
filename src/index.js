@@ -5,7 +5,8 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import { createLogger } from 'redux-logger';
 
 // import { reducer } from './reducer';
 import { addComment } from './actions';
@@ -19,7 +20,12 @@ const reducer = combineReducers({
   users
 });
 
-const store = createStore(reducer);
+const logger = createLogger();
+
+const store = createStore(
+  reducer,
+  applyMiddleware(logger)
+);
 
 
 ReactDOM.render(
