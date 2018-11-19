@@ -5,12 +5,12 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
+import DevTools from './DevTools';
 
 // import { reducer } from './reducer';
 import { addComment } from './actions';
 
-import { combineReducers } from 'redux';
 import { comments } from './comments.js';
 import { users } from './users.js';
 
@@ -19,7 +19,10 @@ const reducer = combineReducers({
   users
 });
 
-const store = createStore(reducer);
+const store = createStore(
+  reducer,
+  DevTools.instrument()
+);
 
 
 ReactDOM.render(
