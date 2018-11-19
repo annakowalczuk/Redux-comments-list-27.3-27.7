@@ -5,13 +5,17 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import { Provider } from 'react-redux';
+<<<<<<< HEAD
 import { createStore, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
+=======
+import { createStore, combineReducers } from 'redux';
+import DevTools from './DevTools';
+>>>>>>> dev-redux-devtools
 
 // import { reducer } from './reducer';
 import { addComment } from './actions';
 
-import { combineReducers } from 'redux';
 import { comments } from './comments.js';
 import { users } from './users.js';
 
@@ -20,11 +24,17 @@ const reducer = combineReducers({
   users
 });
 
+<<<<<<< HEAD
 const logger = createLogger();
 
 const store = createStore(
   reducer,
   applyMiddleware(logger)
+=======
+const store = createStore(
+  reducer,
+  DevTools.instrument()
+>>>>>>> dev-redux-devtools
 );
 
 
