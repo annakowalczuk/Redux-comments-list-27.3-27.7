@@ -30,10 +30,10 @@ export const removeComment = (id) => {
   }
 };
 
-export const thumbUpComment = (commentId) => {
+export const thumbUpComment = (id) => {
   return {
     type: THUMB_UP_COMMENT,
-    id: commentId
+    id
   };
 };
 
