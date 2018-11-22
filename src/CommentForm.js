@@ -2,23 +2,38 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { addComment } from './actions'
 
-const CommentForm = ({ dispatch }) => {
-  let newText = '';
+class CommentForm extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {value: ''}
+  }
+    
+  handleSubmit = (e) => {
+    e.preventDefault(); 
+    if (this.state.value !== ''){
+      this.props.addComment(this.state.value)
+      };
+      this.setState({value: ''})
+  }
 
-  return (
-    <form onSubmit={e => {
-        e.preventDefault()
-        if (!newText) {
-          return
-        }
-        dispatch(addComment(newText))
-      }}>
-        <input onChange={(e) => newText=e.target.value} />
+  handleChange = (e) => {
+    this.setState({value: e.target.value})
+  }
+
+  render(){
+    return(
+      <form onSubmit={this.handleSubmit}>
+        <input onChange={this.handleChange} />
         <button type="submit">
           Add Comment
         </button>
       </form>
-    );
-};
+    );    
+  }
+}
 
-export default connect()(CommentForm);
+const mapDispatchToProps = dispatch => ({
+  addComment: (text) => dispatch(addComment(text)),
+});
+
+export default connect(null, mapDispatchToProps)(CommentForm);
