@@ -23,7 +23,7 @@ class CommentForm extends React.Component {
   render(){
     return(
       <form onSubmit={this.handleSubmit}>
-        <input onChange={this.handleChange} />
+        <input value={this.state.value} onChange={this.handleChange} />
         <button type="submit">
           Add Comment
         </button>
